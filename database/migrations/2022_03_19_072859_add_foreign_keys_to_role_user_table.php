@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysToDetailUserTable extends Migration
+class AddForeignKeysToRoleUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddForeignKeysToDetailUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('detail_user', function (Blueprint $table) {
+        Schema::table('role_user', function (Blueprint $table) {
+            $table->foreign('role_id', 'fk_role_user_to_role')->references('id')->on('role')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign('user_id', 'fk_detail_user_to_users')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->foreign('type_user_id', 'fk_detail_user_to_type_user')->references('id')->on('type_user')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -26,9 +26,9 @@ class AddForeignKeysToDetailUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('detail_user', function (Blueprint $table) {
-            $table->dropForeign('fk_detail_user_to_users');
-            $table->dropForeign('fk_detail_user_to_type_user');
+        Schema::table('role_user', function (Blueprint $table) {
+            $table->dropForeign('fk_role_user_to_role');
+            $table->dropForeign('fk_role_user_to_users');
         });
     }
 }
