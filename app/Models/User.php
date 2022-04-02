@@ -81,4 +81,9 @@ class User extends Authenticatable
         // 2 parameter (path model, field foreign key)
         return $this->hasOne('App\Models\ManagementAccess\DetailUser.php', 'user_id');
     }
+
+    public function role_user() {
+        // 2 parameter (path mode, field foreign key)
+        return $this->hasMany('App\Models\ManagementAccess\RoleUser.php','user_id');
+    }
 }
