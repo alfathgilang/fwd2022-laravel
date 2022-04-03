@@ -12,7 +12,7 @@ class Consultation extends Model
     use SoftDeletes;
 
     //declare table
-    public $table = 'config_payment';
+    public $table = 'consultation';
 
     //this field must type date yyyy-mm-dd hh:mm:ss
     protected $date = [
