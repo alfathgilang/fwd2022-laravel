@@ -31,7 +31,7 @@ class UpdateSpecialistRequest extends FormRequest
     {
         return [
             'name' => [
-                'required', 'string', 'max:255',
+                'required', 'string', 'max:255', Rule::unique('specialist')->ignore($this->specialist),
             ],
             'price' => [
                 'required', 'string', 'max:255',

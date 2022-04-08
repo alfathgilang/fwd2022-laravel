@@ -31,7 +31,7 @@ class UpdateConsultationRequest extends FormRequest
     {
         return [
             'name' => [
-                'required', 'string', 'max:255'
+                'required', 'string', 'max:255', Rule::unique('consultation')->ignore($this->consultation),
             ],
         ];
     }
