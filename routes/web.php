@@ -20,6 +20,14 @@ use App\Models\Operational\Appointment;
 
 Route::resource('/', LandingController::class);
 
+Route::group(['middleware' => ['auth:sanctum', 'Verified']], function() {
+    //application page
+    Route::resource('appointment', AppointmentController::class);
+
+    //payment page
+    Route::resource('payment', PaymentController::class);
+});
+
 Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['auth:sanctum', 'Verified']], function() {
 
     // return view('dashboard');
