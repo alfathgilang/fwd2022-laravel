@@ -4,7 +4,7 @@
 
         @include('includes.frontsite.meta')
 
-        <title>@yield('title') | Meet Doctor</title>
+        <title>@yield('title') | MeetDoctor</title>
 
         @stack('before-style')
             @include('includes.frontsite.style')
@@ -15,12 +15,12 @@
 
         @include('components.frontsite.header')
             @yield('content')
+
         @include('components.frontsite.footer')
 
         @stack('before-script')
-            @include('includes.frontsite.style')
+            @include('includes.frontsite.script')
         @stack('after-script')
-
 
         {{-- modals --}}
         {{-- if you have a modal, create here --}}
