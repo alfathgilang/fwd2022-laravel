@@ -7,6 +7,9 @@ use App\Http\Controllers\Frontsite\LandingController;
 use App\Http\Controllers\Frontsite\AppointmentController;
 use App\Http\Controllers\Frontsite\PaymentController;
 
+//backsite
+use App\Http\Controllers\Backsite\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,7 +41,14 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     //payment page
     Route::resource('payment', PaymentController::class);
 
-})
+});
+
+Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['auth:sanctum', 'verified']], function() {
+
+    //dashboard
+    Route::resource('dashboard', DashboardController::class);
+
+});
 
 // Route::get('/', function () {
 //     return view('welcome');
