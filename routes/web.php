@@ -9,6 +9,18 @@ use App\Http\Controllers\Frontsite\PaymentController;
 
 //backsite
 use App\Http\Controllers\Backsite\DashboardController;
+use App\Http\Controllers\Backsite\PermissionController;
+use App\Http\Controllers\Backsite\RoleController;
+use App\Http\Controllers\Backsite\UserController;
+use App\Http\Controllers\Backsite\TypeUserController;
+use App\Http\Controllers\Backsite\ConsultationController;
+use App\Http\Controllers\Backsite\SpecialistController;
+use App\Http\Controllers\Backsite\ConfigPaymentController;
+use App\Http\Controllers\Backsite\DoctorController;
+use App\Http\Controllers\Backsite\AppointmentBackController;
+use App\Http\Controllers\Backsite\TransactionController;
+use App\Http\Controllers\Backsite\ReportController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,18 +47,41 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
 
     // return view('dashboard');
 
-    //application page
-    Route::resource('appointment', AppointmentController::class);
+     //dashboard
+     Route::resource('dashboard', DashboardController::class);
 
-    //payment page
-    Route::resource('payment', PaymentController::class);
+     //management-access/permission
+     Route::resource('permission', PermissionController::class);
 
-});
+     //management-access/role
+     Route::resource('role', RoleController::class);
 
-Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['auth:sanctum', 'verified']], function() {
+     //management-access/user
+     Route::resource('user', UserController::class);
 
-    //dashboard
-    Route::resource('dashboard', DashboardController::class);
+     //management-access/typeuser
+     Route::resource('typeuser', TypeUserController::class);
+
+     //master-data/consultation
+     Route::resource('consultation', ConsultationController::class);
+
+     //master-data/specialist
+     Route::resource('specialist', SpecialistController::class);
+
+     //master-data/configpayment
+     Route::resource('configpayment', ConfigPaymentController::class);
+
+     //operational/doctor
+     Route::resource('doctor', DoctorController::class);
+
+     //operational/appointmentback
+     Route::resource('appointmentback', AppointmentBackController::class);
+     
+     //operational/transaction
+     Route::resource('transaction', TransactionController::class);
+
+     //operational/report
+     Route::resource('report', ReportController::class);
 
 });
 
