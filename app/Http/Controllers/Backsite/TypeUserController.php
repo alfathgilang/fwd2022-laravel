@@ -3,18 +3,34 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+
+//use library here
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
+
+//user everything
+//use Gate;
+use Auth;
+
+//model here
+use App\Models\MasterData\TypeUser;
 
 class TypeUserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Create a new Controller instance
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
-        return view('pages.backsite.management-access.type-user.index');
+        $type_user = TypeUser::all();
+
+        return view('pages.backsite.management-access.type-user.index', compact('type_user'));
     }
 
     /**
