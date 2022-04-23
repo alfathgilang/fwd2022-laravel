@@ -3,10 +3,31 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+
+//use library here
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
+
+//user everything
+//use Gate;
+use Auth;
+
+//model here
+use App\Models\ManagementAccess\Permission;
 
 class PermissionController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +35,9 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.management-access.permission.index');
+        $permission = Permission::all();
+
+        return view('pages.backsite.management-access.permission.index', compact('permission'));
     }
 
     /**
@@ -24,7 +47,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -35,7 +58,7 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -46,7 +69,7 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -57,7 +80,7 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -69,7 +92,7 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -80,6 +103,6 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return abort(404);
     }
 }
