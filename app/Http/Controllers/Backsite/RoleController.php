@@ -17,7 +17,10 @@ use App\Http\Requests\Role\UpdateRoleRequest;
 use Auth;
 
 //model here
-use App\Models\MasterData\Role;
+use App\Models\ManagementAccess\Role;
+use App\Models\ManagementAccess\RoleUser;
+use App\Models\ManagementAccess\Permission;
+use App\Models\ManagementAccess\PermissionRole;
 
 class RoleController extends Controller
 {
@@ -75,9 +78,11 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        //
+        $role->load('permission');
+
+        return view('pages.backsite.management-access.role.show', compact('role'));
     }
 
     /**
@@ -86,7 +91,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
         // need more notes here
         $permission = Permission::all();
@@ -102,7 +107,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
         // need more notes here
         $role->update($request->all());

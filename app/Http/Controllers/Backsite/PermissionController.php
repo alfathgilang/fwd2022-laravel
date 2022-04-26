@@ -14,6 +14,9 @@ use Auth;
 
 //model here
 use App\Models\ManagementAccess\Permission;
+use App\Models\ManagementAccess\PermissionRole;
+use App\Models\ManagementAccess\Role;
+use App\Models\ManagementAccess\RoleUser;
 
 class PermissionController extends Controller
 {
@@ -35,7 +38,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permission = Permission::all();
+        $permission = Permission::orderBy('id', 'desc')->get();
 
         return view('pages.backsite.management-access.permission.index', compact('permission'));
     }
@@ -69,7 +72,9 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        return abort(404);
+        $role->load('permission');
+
+        return view('pages.backsite.management-access.role.show', compact('role'));
     }
 
     /**
@@ -80,7 +85,7 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        return abort(404);
+        $permission = Permission::all();
     }
 
     /**

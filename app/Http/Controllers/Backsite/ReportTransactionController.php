@@ -3,10 +3,39 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
-class AppointmentBackController extends Controller
+// use library here
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
+
+// use everything here
+use Gate;
+use Auth;
+
+// use model here
+use App\Models\Operational\Transaction;
+use App\Models\Operational\Appointment;
+use App\Models\Operational\Doctor;
+use App\Models\User;
+use App\Models\ManagementAccess\DetailUser;
+use App\Models\MasterData\Consultation;
+use App\Models\MasterData\Specialist;
+use App\Models\MasterData\ConfigPayment;
+
+// thirdparty package
+
+class ReportTransactionController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +43,19 @@ class AppointmentBackController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.operational.appointment.index');
+        abort_if(Gate::denies('transaction_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $type_user_condition = Auth::user()->detail_user->type_user_id;
+
+        if($type_user_condition == 1){
+            // for admin
+            $transaction = Transaction::orderBy('created_at', 'desc')->get();
+        }else{
+            // other admin for doctor & patient ( task for everyone here )
+            $transaction = Transaction::orderBy('created_at', 'desc')->get();
+        }
+
+        return view('pages.backsite.operational.transaction.index', compact('transaction'));
     }
 
     /**

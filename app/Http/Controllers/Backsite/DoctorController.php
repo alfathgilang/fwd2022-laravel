@@ -13,7 +13,7 @@ use App\Http\Doctor\Request\StoreDoctorRequest;
 use App\Http\Doctor\Request\UpdateDoctorRequest;
 
 //user everything
-//use Gate;
+use Gate;
 use Auth;
 
 //model here
@@ -83,6 +83,8 @@ class DoctorController extends Controller
      */
     public function show(Doctor $doctor)
     {
+        abort_if(Gate::denies('doctor_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         return view('pages.backsite.operational.doctor.show', compact('doctor'));
     }
 
@@ -94,6 +96,8 @@ class DoctorController extends Controller
      */
     public function edit(Doctor $doctor)
     {
+        abort_if(Gate::denies('doctor_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         //for select2
         $specialist = Specialist::orderBy('name', 'asc')->get();
 
@@ -128,6 +132,8 @@ class DoctorController extends Controller
      */
     public function destroy(Doctor $doctor)
     {
+        abort_if(Gate::denies('doctor_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $doctor->forceDelete();
 
         alert()->success('Success Message', 'Successfully deleted doctor');
