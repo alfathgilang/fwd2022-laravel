@@ -4,35 +4,50 @@ namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
 
-//use library here
+// use library here
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-//user everything
+// use everything here
 use Gate;
 use Auth;
 
-//model here
-use App\Models\MasterData\TypeUser;
+// use model here
+use App\Models\User;
+use App\Models\Operational\Appointment;
+use App\Models\Operational\Transaction;
+use App\Models\Operational\Doctor;
+use App\Models\MasterData\Specialist;
+use App\Models\MasterData\Consultation;
+use App\Models\MasterData\ConfigPayment;
 
-class TypeUserController extends Controller
+class HospitalPatientController extends Controller
 {
     /**
-     * Create a new Controller instance
+     * Create a new controller instance.
+     *
+     * @return void
      */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        abort_if(Gate::denies('type_user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('hospital_patient_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $type_user = TypeUser::all();
+        $hospital_patient = User::whereHas('detail_user', function ($query) {
+                                    return $query->where('type_user_id', 3);
+                                })->orderBy('created_at', 'desc')->get();
 
-        return view('pages.backsite.management-access.type-user.index', compact('type_user'));
+        return view('pages.backsite.operational.hospital-patient.index', compact('hospital_patient'));
     }
 
     /**

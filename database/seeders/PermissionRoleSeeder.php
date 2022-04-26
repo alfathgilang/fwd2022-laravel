@@ -19,7 +19,7 @@ class PermissionRoleSeeder extends Seeder
     {
         //for super admin
         $admin_permissions = Permission::all();
-        Role::findOrFail(1)->permission()->sync($admin_permission->pluck('id'));
+        Role::findOrFail(1)->permission()->sync($admin_permissions->pluck('id'));
 
         //get permission simple for admin
         $user_permissions = $admin_permissions->filter(function ($permission) {

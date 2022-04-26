@@ -17,6 +17,7 @@ use App\Http\Controllers\Backsite\ConsultationController;
 use App\Http\Controllers\Backsite\SpecialistController;
 use App\Http\Controllers\Backsite\ConfigPaymentController;
 use App\Http\Controllers\Backsite\DoctorController;
+use App\Http\Controllers\Backsite\HospitalPatientController;
 use App\Http\Controllers\Backsite\ReportAppointmentController;
 use App\Http\Controllers\Backsite\ReportTransactionController;
 use App\Http\Controllers\Backsite\ReportController;
@@ -60,7 +61,7 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
      Route::resource('user', UserController::class);
 
      //management-access/typeuser
-     Route::resource('typeuser', TypeUserController::class);
+     Route::resource('type_user', TypeUserController::class);
 
      //master-data/consultation
      Route::resource('consultation', ConsultationController::class);
@@ -69,10 +70,13 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
      Route::resource('specialist', SpecialistController::class);
 
      //master-data/configpayment
-     Route::resource('configpayment', ConfigPaymentController::class);
+     Route::resource('config_payment', ConfigPaymentController::class);
 
      //operational/doctor
      Route::resource('doctor', DoctorController::class);
+
+     // hospital patient
+    Route::resource('hospital_patient', HospitalPatientController::class);
 
      //operational/reporttransaction
      Route::resource('appointment', ReportAppointmentController::class);
