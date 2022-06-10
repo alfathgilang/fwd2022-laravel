@@ -105,7 +105,7 @@ class ConsultationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateConsultationRequest $request, Consultation $specialist)
+    public function update(UpdateConsultationRequest $request, Consultation $consultation)
     {
         //get all request from front site
         $data = $request->all();
