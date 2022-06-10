@@ -50,13 +50,13 @@
                 <li class=" nav-item"><a href="#"><i class="{{ request()->is('backsite/specialist') || request()->is('backsite/specialist/*') || request()->is('backsite/*/specialist') || request()->is('backsite/*/specialist/*') || request()->is('backsite/consultation') || request()->is('backsite/consultation/*') || request()->is('backsite/*/consultation') || request()->is('backsite/*/consultation/*') || request()->is('backsite/config_payment') || request()->is('backsite/config_payment/*') || request()->is('backsite/*/config_payment') || request()->is('backsite/*/config_payment/*') ? 'bx bx-customize bx-flashing' : 'bx bx-customize' }}"></i><span class="menu-title" data-i18n="Master Data">Master Data</span></a>
                     <ul class="menu-content">
 
-                        {{-- @can('specialist_access') --}}
+                         {{-- @can('specialist_access')  --}}
                             <li class="{{ request()->is('backsite/specialist') || request()->is('backsite/specialist/*') || request()->is('backsite/*/specialist') || request()->is('backsite/*/specialist/*') ? 'active' : '' }} ">
                                 <a class="menu-item" href="{{ route('backsite.specialist.index') }}">
                                     <i></i><span>Specialist</span>
                                 </a>
                             </li>
-                        {{-- @endcan --}}
+                         {{-- @endcan  --}}
 
                         {{-- @can('consultation_access') --}}
                             <li class="{{ request()->is('backsite/consultation') || request()->is('backsite/consultation/*') || request()->is('backsite/*/consultation') || request()->is('backsite/*/consultation/*') ? 'active' : '' }} ">

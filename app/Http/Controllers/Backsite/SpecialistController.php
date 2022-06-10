@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 //request
-use App\Http\Specialists\Request\StoreSpecialistRequest;
-use App\Http\Specialists\Request\UpdateSpecialistRequest;
+use App\Http\Requests\Specialist\StoreSpecialistRequest;
+use App\Http\Requests\Specialist\UpdateSpecialistRequest;
 
 //user everything
 use Gate;
@@ -40,7 +40,7 @@ class SpecialistController extends Controller
 
         $specialist = Specialist::orderBy('created_at', 'desc')->get();
 
-        return view('pages.backsite.master-data.specialist.index');
+        return view('pages.backsite.master-data.specialist.index', compact('specialist'));
     }
 
     /**
@@ -63,6 +63,10 @@ class SpecialistController extends Controller
     {
         //get all request from frontsite
         $data = $request->all();
+
+        //re format before push to table
+        $data['price'] = str_replace(',','', $data['price']);
+        $data['price'] = str_replace('IDR','', $data['price']);
 
         //store to database
         $specialist = Specialist::create($data);
@@ -110,6 +114,9 @@ class SpecialistController extends Controller
         //get all request from front site
         $data = $request->all();
 
+        $data['price'] = str_replace(',', '', $data['price']);
+        $data['price'] = str_replace('IDR', '', $data['price']);
+
         //update to database
         $specialist->update($data);
 
@@ -128,7 +135,7 @@ class SpecialistController extends Controller
     {
         abort_if(Gate::denies('specialist_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $specialist->delete();
+        $specialist->forceDelete();
 
         alert()->success('Success Message', 'Successfully deleted specialist');
         return back();

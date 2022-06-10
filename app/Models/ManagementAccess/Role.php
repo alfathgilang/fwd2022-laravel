@@ -42,11 +42,11 @@ class Role extends Model
 
     public function role_user() {
         // 2 parameter (path mode, field foreign key)
-        return $this->hasMany('App\Models\ManagementAccess\RoleUser.php','role_id');
+        return $this->hasMany('App\Models\ManagementAccess\RoleUser','role_id');
     }
 
     public function permission_role() {
         // 2 parameter (path mode, field foreign key)
-        return $this->hasMany('App\Models\ManagementAccess\PermissionRole.php','role_id');
+        return $this->hasMany('App\Models\ManagementAccess\PermissionRole','role_id');
     }
 }

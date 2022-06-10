@@ -29,7 +29,7 @@ class StoreDoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            'spcialist_id' => [
+            'specialist_id' => [
                 'required', 'integer',
             ],
             'name' => [
@@ -39,7 +39,7 @@ class StoreDoctorRequest extends FormRequest
                 'required', 'string', 'max:255'
             ],
             'photo' => [
-                'nullable', 'string', 'max:10000'
+                'nullable', 'mimes:jpeg,svg,png', 'max:10000'
             ],
         ];
     }

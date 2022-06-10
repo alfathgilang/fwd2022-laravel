@@ -1,5 +1,8 @@
 <!-- BEGIN: Vendor CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('/assets/backsite/app-assets/vendors/css/vendors.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('/assets/backsite/app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('/assets/backsite/app-assets/vendors/css/tables/extensions/responsive.dataTables.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('/assets/backsite/app-assets/vendors/css/forms/selects/select2.min.css') }}">
 <!-- END: Vendor CSS-->
 
 <!-- BEGIN: Theme CSS-->
@@ -19,5 +22,5 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('/assets/backsite/assets/css/style.css') }}">
 <!-- END: Custom CSS-->
 
-{{-- Third party --}}
+{{-- third party --}}
 <link href="{{ url('https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css') }}" rel="stylesheet">

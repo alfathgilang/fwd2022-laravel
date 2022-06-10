@@ -83,7 +83,7 @@ class ConfigPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ConfigPayment $configPayment)
+    public function edit(ConfigPayment $config_payment)
     {
         abort_if(Gate::denies('config_payment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
@@ -101,6 +101,11 @@ class ConfigPaymentController extends Controller
     {
         //get all request
         $data = $request->all();
+
+        //re format before push to table
+        $data['fee'] = str_replace(',', '', $data['fee']);
+        $data['fee'] = str_replace('IDR', '', $data['fee']);
+        $data['vat'] = str_replace(',', '', $data['vat']);
 
         //update to database
         $config_payment->update($data);

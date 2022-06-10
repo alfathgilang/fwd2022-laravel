@@ -128,7 +128,7 @@ class ConsultationController extends Controller
     {
         abort_if(Gate::denies('consultation_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
-        $consultation->delete();
+        $consultation->forceDelete();
 
         alert()->success('Success Message', 'Successfully deleted consultation');
         return back();

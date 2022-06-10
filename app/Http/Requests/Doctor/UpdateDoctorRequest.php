@@ -32,7 +32,7 @@ class UpdateDoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            'spcialist_id' => [
+            'specialist_id' => [
                 'required', 'integer',
             ],
             'name' => [
@@ -42,7 +42,7 @@ class UpdateDoctorRequest extends FormRequest
                 'required', 'string', 'max:255'
             ],
             'photo' => [
-                'nullable', 'string', 'max:10000'
+                'nullable', 'mimes:jpeg,svg,png', 'max:10000'
             ],
         ];
     }

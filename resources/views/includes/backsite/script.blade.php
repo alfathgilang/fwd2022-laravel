@@ -19,7 +19,7 @@
 
 <!-- BEGIN: Page JS-->
 <script src="{{ asset('/assets/backsite/app-assets/js/scripts/forms/select/form-select2.js') }}"></script>
-<script src="{{ asset('/assets/backsite/app-assets/js/scripts/tables/datatables/dattable-api.js') }}"></script>
+<script src="{{ asset('/assets/backsite/app-assets/js/scripts/tables/datatables/datatable-api.js') }}"></script>
 <script src="{{ asset('/assets/backsite/app-assets/js/scripts/forms/custom-file-input.js') }}"></script>
 <script src="{{ asset('/assets/backsite/app-assets/js/scripts/tooltip/tooltip.js') }}"></script>
 <script src="{{ asset('/assets/backsite/app-assets/js/scripts/popover/popover.js') }}"></script>
@@ -28,4 +28,4 @@
 <!-- END: Page JS-->
 
 {{-- third party --}}
-<link href="{{ url('https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css') }}" rel="stylesheet">
+<script src="{{ url('https://unpkg.com/boxicons@latest/dist/boxicons.js') }}"></script>

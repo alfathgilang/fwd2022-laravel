@@ -36,13 +36,13 @@ class Doctor extends Model
     public function specialist() {
 
         // 2 parameter (path model, field foreign key)
-        return $this->belongsTo('App\Models\Operational\Specialist.php', 'specialist_id', 'id');
+        return $this->belongsTo('App\Models\MasterData\Specialist', 'specialist_id', 'id');
     }
 
     // one to many
     public function appointment() {
 
         // 2 parameter (path model, field foreign key)
-        return $this->hasMany('App\Models\Operational\Appointment.php', 'doctor_id');
+        return $this->hasMany('App\Models\Operational\Appointment', 'doctor_id');
     }
 }

@@ -33,6 +33,6 @@ class Consultation extends Model
     public function appointment() {
 
         // 2 parameter (path model, field foreign key)
-        return $this->hasMany('App\Models\Operational\Appointment.php', 'consultation_id');
+        return $this->hasMany('App\Models\Operational\Appointment', 'consultation_id');
     }
 }
